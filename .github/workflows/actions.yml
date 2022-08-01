@@ -21,3 +21,4 @@ jobs:
         pwd
         ls -ltr  
         dotnet --version
+        dotnet build
