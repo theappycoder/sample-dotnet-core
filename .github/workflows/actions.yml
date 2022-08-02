@@ -17,8 +17,14 @@ jobs:
       with: 
         dotnet-version: '6.0.x'
     - name: list current directory
-      run: | 
-        pwd
-        ls -ltr  
-        dotnet --version
-        dotnet build
+      run: dotnet build
+  notify:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: send notification
+        uses: theappycoder/ms_teams@v1.2
+        with:
+          webhook_uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}   
+          message: "This is from custom actions created."
